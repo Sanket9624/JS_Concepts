@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            p{
+                        text-align: center;
+            }
+            #img{
+                        justify-content:center;
+                        align-items: center;
+                        width: 500px;
+                        height: 600px;
+            }
+    </style>
+</head>
+<body style="background-color: #212121;color: aliceblue;">
+<div id="img" style="border: 1px solid red;">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse repellat possimus minus error, numquam maiores commodi! Est alias culpa distinctio vel. Quam quasi earum, alias obcaecati iusto cum maxime.
+</div>
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(xhr.responseText);
+            const img = document.getElementById('img');
+            img.innerHTML = `
+                <img src="${data.avatar_url}" alt="Avatar">
+                <p>${data.login} : ${data.followers}</p>
+            `;
+        }
+    };
+    xhr.send();
+</script>
+</html>
